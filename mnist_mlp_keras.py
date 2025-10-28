@@ -52,3 +52,12 @@ print(f"test accuracy : {accuracy}")
 print(result.history.keys())
 print(result.history.values())
 print(result.history)
+
+#plotting visualizations
+plt.plot(result.history['val_accuracy'], label="validate accuracy", color="blue")
+plt.plot(result.history['accuracy'], label="train accuracy", color="green")
+plt.title("train_accuracy vs val_accuracy")
+plt.xlabel("epochs")
+plt.ylabel("accuracy")
+plt.legend()
+plt.show()
