@@ -38,8 +38,17 @@ model.add(Dense(128,'relu')) #128 neurons
 model.add(Dense(10,'softmax')) #10 neurons for 10 classes last layer
 
 #compile the model
-model.compile(optimizer='Adam', loss='categorical_crossentropy', )
+model.compile(optimizer='Adam', loss='categorical_crossentropy', metrics=['accuracy']) #accuracy on training dataset
 
 
-#train the model
-model.fit(x_train,y_train,epochs=10,batch_size=64)
+
+#train
+result=model.fit(x_train, y_train, epochs=10, batch_size=64, validation_split=0.2)#epochs means no of times entire data is passed v_split=0.2 take 20% data for validation or validation_data=(x_test,y_test)
+
+#evaluate
+loss,accuracy = model.evaluate(x_test, y_test)
+print(f"test loss : {loss}")
+print(f"test accuracy : {accuracy}")
+print(result.history.keys())
+print(result.history.values())
+print(result.history)
